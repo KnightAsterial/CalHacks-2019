@@ -3,6 +3,7 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import HomeScreen from './components/HomeScreen/HomeScreen';
 import LoginScreen from './components/LoginScreen/LoginScreen';
+import QRScreen from './components/QRScreen/QRScreen'
 
 const MainNavigator = createStackNavigator({
   Home: {
@@ -13,6 +14,10 @@ const MainNavigator = createStackNavigator({
     screen: LoginScreen,
     navigationOptions: { header: null, },
     },
+  QR: {
+    screen: QRScreen,
+    navigationOptions: { header: null, },
+  }
 }, {
   initialRouteName: 'Login',
 });

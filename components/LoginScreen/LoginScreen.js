@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     textAlign: "right",
     marginTop: 9,
-    marginRight: 40
+    marginRight: 15
   },
   new_account_button: {
     width: "100%",

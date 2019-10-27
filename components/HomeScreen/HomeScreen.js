@@ -4,6 +4,7 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import EventTab from './EventTab'
 import * as Font from 'expo-font';
+import {getUser} from './../../services/Network';
 
 class HomeScreen extends Component{
   constructor(props){
@@ -44,7 +45,10 @@ class HomeScreen extends Component{
         let event = this.state.user.events[i];
         if (event.status == "active"){
           hasActives = true;
-          activeDOMElements.push(<EventTab key={i} name={event.name} numBids={event.numBids} color={event.color} />);
+          activeDOMElements.push(<EventTab key={i} 
+                                        onPress={ () => {this.props.navigation.navigate('QR',{userID: this.state.user.name, color: event.color})} }
+                                        name={event.name} numBids={event.numBids}
+                                        color={event.color} />);
         }
         if (event.status == "inactive"){
           hasInactives = true;
@@ -74,18 +78,7 @@ class HomeScreen extends Component{
   }
 }
 
-function getUser(userID){
-  return new Promise(function(resolve, reject){
-    testEvents = [
-      {name: "CodeBase Rager", numBids: 1, color: "#65BFA4", status: "active"},
-      {name: "TDX Throwdown", numBids: 1, color: "#D1ADFF", status: "active"},
-      {name: "CalHacks Closing Ceremony", numBids: 60, color: "#FFB26B", status: "inactive"},
-      {name: "Math Club Hangout", numBids: 72, color: "#FFB26B", status: "inactive"},
-      {name: "Tech x Trash", numBids: 3, color: "#F36464", status: "inactive"}
-    ]
-    resolve({name: "Parth Shah", events: testEvents});
-  });
-}
+
 
 const styles = StyleSheet.create({
   container: {

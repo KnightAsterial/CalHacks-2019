@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, SafeAreaView } from 'react-native';
+import { Text, View, StyleSheet, SafeAreaView, TouchableWithoutFeedback } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import * as Font from 'expo-font';
@@ -33,6 +33,7 @@ class EventTab extends Component{
     }
 
     return (
+      <TouchableWithoutFeedback onPress={this.props.onPress}>
       <View style={event_box_style}>
         <View style={{width: 54, alignItems: "center", justifyContent:"center"}}>
         {this.state.fontLoaded ? <Text style={{fontFamily: 'Paytone_One', fontSize: 36, color: '#ffffff'}}> {this.props.numBids} </Text> : null}
@@ -41,6 +42,7 @@ class EventTab extends Component{
         {this.state.fontLoaded ? <Text numberOfLines={1} style={{fontFamily: 'Monserrat', fontSize: 36, color: "#ffffff"}}> {this.props.name} </Text> : null}
         </View>
       </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
