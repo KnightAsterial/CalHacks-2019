@@ -1,16 +1,33 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import HomeScreen from './components/HomeScreen/HomeScreen';
 import LoginScreen from './components/LoginScreen/LoginScreen';
 
 const MainNavigator = createStackNavigator({
-  Home: HomeScreen,
-  Login: LoginScreen,
+  Home: {
+    screen: HomeScreen,
+    navigationOptions: { header: null, },
+    },
+  Login: {
+    screen: LoginScreen,
+    navigationOptions: { header: null, },
+    },
 }, {
   initialRouteName: 'Login',
 });
 
-const App = createAppContainer(MainNavigator);
+const AppContainer = createAppContainer(MainNavigator);
+
+
+class App extends Component{
+  render(){
+    return (
+        <AppContainer />
+    );
+  }
+}
+
+
 
 export default App;
