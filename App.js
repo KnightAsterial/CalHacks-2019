@@ -3,7 +3,8 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import HomeScreen from './components/HomeScreen/HomeScreen';
 import LoginScreen from './components/LoginScreen/LoginScreen';
-import QRScreen from './components/QRScreen/QRScreen'
+import QRScreen from './components/QRScreen/QRScreen';
+import QRReaderScreen from './components/QRReaderScreen/QRReaderScreen'
 
 const MainNavigator = createStackNavigator({
   Home: {
@@ -17,13 +18,16 @@ const MainNavigator = createStackNavigator({
   QR: {
     screen: QRScreen,
     navigationOptions: { header: null, },
+  },
+  QRScanner:{
+    screen: QRScannerScreen,
+    navigationOptions: { header: null, },
   }
 }, {
   initialRouteName: 'Login',
 });
 
 const AppContainer = createAppContainer(MainNavigator);
-
 
 class App extends Component{
   render(){
@@ -32,7 +36,5 @@ class App extends Component{
     );
   }
 }
-
-
 
 export default App;

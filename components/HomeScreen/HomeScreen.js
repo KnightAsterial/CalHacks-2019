@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, SafeAreaView } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import EventTab from './EventTab'
+import QRScannerButton from './QRScannerButton'
 import * as Font from 'expo-font';
 import {getUser} from './../../services/Network';
 
@@ -13,7 +14,7 @@ class HomeScreen extends Component{
   }
 
   async componentDidMount() {
-    await Font.loadAsync({
+    await Font.loadAsync({ 
       'Monserrat': require('./../../assets/fonts/Montserrat-Regular.ttf'),
       'Paytone_One': require ('./../../assets/fonts/PaytoneOne-Regular.ttf'),
     });
@@ -29,6 +30,7 @@ class HomeScreen extends Component{
     let hasInactives = false;
     let activeDOMElements = [];
     let bidDOMElements = [];
+    let QRScanner = [];
     let event_box_style= {
       width: "100%",
       height: 74,
@@ -55,8 +57,8 @@ class HomeScreen extends Component{
           bidDOMElements.push(<EventTab key={i} name={event.name} numBids={event.numBids} color={event.color} />);
         }
       }
+      QRScanner.push(<QRScannerButton onPress={ () => {this.props.navigation.navigate('QRScanner',{userID: this.state.user.name, color: event.color})} } />)
     }
-
     
     
     return (
@@ -64,6 +66,7 @@ class HomeScreen extends Component{
         <View style={styles.container}>
 
           {(this.state.fontLoaded && this.state.user) ? (<Text style={styles.heading}>  {this.state.user.name}  </Text>) : null}
+          {QRScanner}
           { hasActives ? (<Text style={styles.secondary_text}>  actives  </Text>): null}
           {activeDOMElements}
 
